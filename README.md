@@ -864,7 +864,7 @@ The process happens once for each class, in fact the generated metadata are stor
 A "safe" mechanism for extracting non-static properties is used to generate the metadata. Static methods, static properties and prototype methods of the class can be extracted and verified directly through the class itself, while non-static properties can be extracted only by creating a new instance of the object.\
 To avoid dangerous invocations, a check is made on the whole constructor chain and only if the chain is in a safe state then a test instance is created for analysis.\
 in general all the inherited classes that contain the native constructor method and all the inherited constructor functions are considered not safe.\
-All generated classes that contains only the magic `\_\_construct` method are considered "safe", in fact through a bypass is avoided the invocation of the `\_\_construct` method during the generation of the test instance. (see chapter [class manipulation](#class-manipulation))
+All generated classes that contains only the magic `__construct` method are considered "safe", in fact through a bypass is avoided the invocation of the `__construct` method during the generation of the test instance. (see chapter [class manipulation](#class-manipulation))
 
 ```js
 class Test {
@@ -1209,6 +1209,8 @@ handler.get = function (target, property, receiver) {
 ```
 
 ## private workaround
+
+workaround should be implemented if you really want to define private, otherwise you can use `__name` syntax, in the next future something will be implemented to transform this syntax in a real private.
 
 create a native class with private and extends a class with magic methods
 
