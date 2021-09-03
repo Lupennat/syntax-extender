@@ -206,7 +206,7 @@ interceptor.middleware('app', function (module, info) {
 
 Info is an object containing useful information
 
-```json
+```js
 {
     "moduleId": "./model/existing-test", // moduleId string
     "namespace": "app", // base namespace
@@ -229,14 +229,13 @@ In order to register a namespace it modifies the internal Module.\_resolveFilena
 
 In order to automatically extends loaded modules it modifies Module.prototype.require and apply extensions to the original module. After the extensions it register on Module.\_cache[filename].exports the new content to cache the extended object.\
 
-> Only at first require the syntax-extender will be applied.
-
-> Credit to https://github.com/bttmly/intercept-require
+> Only at first require the syntax-extender will be applied.\
+> Credit to https://github.com/bttmly/intercept-require\
 > Credit to https://github.com/ilearnio/module-alias
 
 # access type definition
 
-> feature keyword VALIDATION (default true)
+> feature keyword VALIDATION (default true)\
 > module.exports[Symbol.for('VALIDATION')] for runtime
 
 name of properties, methods and accessors, will define the visibility of the descriptor, every name starting with `_${name}` will be processed as protected and `__${name}` as private, any other syntax will be processed as public (real private `#${name}` can not be detected by syntax-extender, they are real privates)
@@ -364,7 +363,7 @@ All arguments and return definitions will be used to generate class metadata and
 
 ## experimental type declaration by comment
 
-> feature keyword COMMENT (default false)
+> feature keyword COMMENT (default false)\
 > module.exports[Symbol.for('COMMENT')]
 
 If enabled, the comments of the function parameters and the comment for the return type declaration will be processed.\
@@ -442,7 +441,7 @@ Custom class can not be declared iterables, you can use alternative solutions to
 
 ## experimental default value validation
 
-> feature keyword CHECKDEFAULT (default false)
+> feature keyword CHECKDEFAULT (default false)\
 > module.exports[Symbol.for('CHECKDEFAULT')] for runtime
 
 When feature is enabled, an extra validation will be applied for default parameters value.
@@ -468,7 +467,7 @@ function (
 
 ## methods compatibility
 
-> feature keyword COMPATIBILITY (default true)
+> feature keyword COMPATIBILITY (default true)\
 > module.exports[Symbol.for('COMPATIBILITY')] for runtime
 
 When overriding a method, its signature must be compatible with the parent method. Otherwise, an error is emitted. A signature is compatible if it respects the **variance** rules, makes a mandatory parameter optional, and if any new parameters are optional. This is known as the Liskov Substitution Principle, or LSP for short. The [\_\_construct](#construct), and private methods are exempt from these signature compatibility rules, and thus won't emit error in case of a signature mismatch. The [\_\_construct](#construct) return type is forbidden by default.
@@ -482,7 +481,7 @@ When overriding a method, its signature must be compatible with the parent metho
 
 ## methods validation
 
-> feature keyword VALIDATION (default true)
+> feature keyword VALIDATION (default true)\
 > module.exports[Symbol.for('VALIDATION')] for runtime
 
 Every time a class function is invoked, arguments will be validated and error will be raised if something do not match signature (see [Lifecycle](#lifecycle) for more details).
@@ -548,7 +547,7 @@ if (value && isGeneratorFunction(value)) {
 
 # magic methods
 
-> feature keyword MAGIC (default true)
+> feature keyword MAGIC (default true)\
 > module.exports[Symbol.for('MAGIC')] for runtime
 
 Every Class or Abstract created by Syntax Extender can use magic methods
