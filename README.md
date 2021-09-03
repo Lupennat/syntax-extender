@@ -1,6 +1,6 @@
 # Syntax Extender
 
-javascript Syntax Extender tries to introduce the concepts of interfaces and abstract classes (including abstract methods) already present in other languages.\n
+javascript Syntax Extender tries to introduce the concepts of interfaces and abstract classes (including abstract methods) already present in other languages.\
 It introduces at the same time some additional features including:
 
 -   [compatibility checking between methods of inherited classes or interfaces](#methods-compatibility).
@@ -24,9 +24,9 @@ To achieve this goal, some limitations have been introduced:\
 -   abstracts methods and interfaces methods can not contains body.
 -   classes and abstracts can not native extends interfaces.
 
-> Strict mode is not mandatory, but non-use could generate unexpected errors.
-> Please take into account that also class setter and getter are functions.
-> support for native constructor is a feature you can enable/disable it
+> Strict mode is not mandatory, but non-use could generate unexpected errors.\
+> Please take into account that also class setter and getter are functions.\
+> Support for native constructor is a feature you can enable/disable it
 
 ## Compatibility with standard Javascript Classes
 
@@ -34,7 +34,7 @@ Interfaces, Abstract and Classes generated through syntax-extender can be used o
 You can easly extends an Interface a Class or an Abstract but they always respect rules applied by syntax-extender.\
 If you extend and interface you can not be able to override a constant and every time you try to call an interface method that is not implemented an error will be thrown. You will not be able to create an instance of an interface.\
 If you extend an abstract class every time you try to call an abstract method that is not implemented an error will be thrown. You will not be able to create an instance of an abstract. All magic methods implemented on abstract class, will continue to work. All constants of implemented interfaces can not be overrided.\
-If you extend an extended class, all magic methods implemented on abstract class, will continue to work. All constants of implemented interfaces can not be overrided.\
+If you extend an extended class, all magic methods implemented on abstract class, will continue to work. All constants of implemented interfaces can not be overrided.
 
 ## Exposed functionality
 
@@ -94,7 +94,7 @@ module.exports.__define = { test: { 1: 'string', 2: 'array' } };
 
 ## interface
 
-Creating an interface automatically adds the ability to [define magic methods](#magic-methods), define constants, [declare type of arguments](#type-declaration),[extend interfaces](#extend-interfaces), [generate metadata](#lifecycle).\
+Creating an interface automatically adds the ability to [define magic methods](#magic-methods), define constants, [declare type of arguments](#type-declaration),[extend interfaces](#extend-interfaces), [generate metadata](#lifecycle).
 
 ```js
 'use strict';
@@ -225,13 +225,13 @@ You can define features status by config, and also override the default callback
 
 ## how it works
 
-In order to register a namespace it modifies the internal Module.\_resolveFilename method so that when you use require or import it first checks whether the given string starts with one of the registered namespace, if so, it replaces the namespace in the string with the target path of the namespace.\
+In order to register a namespace it modifies the internal Module.\_resolveFilename method so that when you use require or import it first checks whether the given string starts with one of the registered namespace, if so, it replaces the namespace in the string with the target path of the namespace.
 
-In order to automatically extends loaded modules it modifies Module.prototype.require and apply extensions to the original module. After the extensions it register on Module.\_cache[filename].exports the new content to cache the extended object.\
+In order to automatically extends loaded modules it modifies Module.prototype.require and apply extensions to the original module. After the extensions it register on Module.\_cache[filename].exports the new content to cache the extended object.
 
 > Only at first require the syntax-extender will be applied.\
-> Credit to https://github.com/bttmly/intercept-require\
-> Credit to https://github.com/ilearnio/module-alias
+> Credit to [intercept-require](https://github.com/bttmly/intercept-require)\
+> Credit to [module-alias](https://github.com/ilearnio/module-alias)
 
 # access type definition
 
@@ -261,7 +261,7 @@ The type can be a string or a JS object to make a custom type. For destructured 
 You can define multiple type using `union type` sintax `|`, multiple type is forbidden for Custom type and for builtin `self` and `parent`.\
 return type should be defined using key `return`.\
 You can define a type of a promise using sintax `${name}->`, if the value returned from promise can be nullable you can use the syntax `${name}?>`.\
-If the promise can be nullable but not the value returned from promise you can use the syntax `?${name}->`.\
+If the promise can be nullable but not the value returned from promise you can use the syntax `?${name}->`.
 
 ```js
 'use strict';
@@ -322,7 +322,7 @@ console.log(base.b(null)); // null
 ```
 
 You can define a type of a promise using key `${name}->`, if the value returned from promise can be nullable you can use the key `${name}?>`.\
-If the promise can be nullable but not the value returned from promise you can use the key `?${name}->`.\
+If the promise can be nullable but not the value returned from promise you can use the key `?${name}->`.
 
 You can define a type of an iteration using key `${name}[]`, if the value returned from iteration can be nullable you can use the key `${name}[?]`.\
 If the iterable can be nullable but not the value returned from iteration you can use the key `?${name}[]`.\
@@ -435,7 +435,7 @@ module.exports[Symbol.for('PRIORITY')] = 'COMMENT';
 
 > \* type declaration can be more specific using iterable syntax `$name[]` see [compatibility chapter](#methods-compatibility)
 
-`typedArray` and `string` are iterables by default, but declaration iterables is forbidden because result of iteration will be always a `string` or a `binary` if original type is correct.\
+`typedArray` and `string` are iterables by default, but declaration iterables is forbidden because result of iteration will be always a `string` or a `binary` if original type is correct.
 
 Custom class can not be declared iterables, you can use alternative solutions to validate value returned by an iterations.
 
@@ -864,7 +864,7 @@ The process happens once for each class, in fact the generated metadata are stor
 A "safe" mechanism for extracting non-static properties is used to generate the metadata. Static methods, static properties and prototype methods of the class can be extracted and verified directly through the class itself, while non-static properties can be extracted only by creating a new instance of the object.\
 To avoid dangerous invocations, a check is made on the whole constructor chain and only if the chain is in a safe state then a test instance is created for analysis.\
 in general all the inherited classes that contain the native constructor method and all the inherited constructor functions are considered not safe.\
-All generated classes that contain the magic \_\_construct method are considered "safe", in fact through a bypass is avoided the invocation of the \_\_construct method during the generation of the test instance. (see chapter [class manipulation](#class-manipulation))
+All generated classes that contains only the magic `\_\_construct` method are considered "safe", in fact through a bypass is avoided the invocation of the `\_\_construct` method during the generation of the test instance. (see chapter [class manipulation](#class-manipulation))
 
 ```js
 class Test {
