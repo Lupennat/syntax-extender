@@ -1,0 +1,37 @@
+Reflections
+
+// verificare quando la stessa interfaccia è implementata sia dalla classe padre che dalla figlia, per le costanti che non si pestino i piedi
+
+string	represents text data
+number	represents numeric values
+boolean	has true and false values
+null	has one value: null
+undefined	has one value: undefined. It is a default value of an uninitialized variable
+symbol	represents a unique constant value
+
+string[]
+
+(number | string)[]
+
+rivedere Object
+https://www.typescripttutorial.net/typescript-tutorial/typescript-object-type/ 
+
+// non prioritari
+never, enum
+
+// String Literal Types
+
+// tuple
+[number, number, number, number?]
+
+
+// parameter and return ?: Optional
+
+Promise<Seal | undefined>
+
+
+//  regex matching array (Array)?<((?>[^<>]+)|(?R))*>
+//  regex matching Promise (Promise)?<((?>[^<>]+)|(?R))*>
+
+//   String example Array<Promise<number | string>>
+

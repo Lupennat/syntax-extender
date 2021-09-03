@@ -1,0 +1,33 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "css.validate": false,
+        "files.associations": {
+            ".env.*": "dotenv"
+        },
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[jsonc]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "emmet.includeLanguages": {
+            "edge": "html"
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "esbenp.prettier-vscode",
+            "mikestead.dotenv",
+            "ms-vscode.vscode-typescript-next",
+            "luongnd.edge"
+        ]
+    }
+}

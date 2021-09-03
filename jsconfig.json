@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "paths": {
+            "syntax-extender/tests/interceptor/*": ["./spec/tests/interceptor/*"],
+            "syntax-extender/examples/*": ["./examples/*"]
+        }
+    }
+}
