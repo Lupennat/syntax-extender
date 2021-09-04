@@ -1,22 +1,9 @@
 'use strict';
 
-const { abs, withBindingScope } = require('../../../index');
-
-const fs = require('fs');
+const { abs, withBindingScope } = require('syntax-extender');
 
 const a = abs.create();
 class Facade {
-    static __define = {
-        'static:resolved': { 1: 'callable', return: 'void' },
-        'static:swap': { return: 'void' },
-        'static:_getFacadeAccessor': { return: 'string' },
-        'static:_resolveFacadeInstance': { 1: 'string|object' },
-        'static:clearResolvedInstance': { 1: 'string', return: 'void' },
-        'static:getFacadeApplication': { return: 'object' },
-        'static:clearResolvedInstances': { return: 'void' },
-        'static:setFacadeApplication': { return: 'void' }
-    };
-
     static _app;
 
     static _resolvedInstance = {};
@@ -91,3 +78,13 @@ class Facade {
 module.exports = Facade;
 module.exports.__abstract = true;
 module.exports.__abstracts = a.all();
+module.exports.__define = {
+    'static:resolved': { 1: 'callable', return: 'void' },
+    'static:swap': { return: 'void' },
+    'static:_getFacadeAccessor': { return: 'string' },
+    'static:_resolveFacadeInstance': { 1: 'string|object' },
+    'static:clearResolvedInstance': { 1: 'string', return: 'void' },
+    'static:getFacadeApplication': { return: 'object' },
+    'static:clearResolvedInstances': { return: 'void' },
+    'static:setFacadeApplication': { return: 'void' }
+};

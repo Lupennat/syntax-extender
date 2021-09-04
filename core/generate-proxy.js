@@ -160,6 +160,9 @@ const fixSourceAbstracts = (source, metadata, abstracts, force = false, freeze =
         const data = metadata.abstractsMap[uuid];
         delete metadata.abstractsMap[uuid];
         if (data.isStatic) {
+            if (!metadata.get(data.type, `static:${data.name}`).isAbstract) {
+                continue;
+            }
             if (!force && hasOwn(source, data.name)) {
                 continue;
             }
@@ -182,6 +185,9 @@ const fixSourceAbstracts = (source, metadata, abstracts, force = false, freeze =
                 staticDescriptors[data.name] = getDefinedProperty(data.type, data.source, data.name, freeze);
             }
         } else {
+            if (!metadata.get(data.type, data.name).isAbstract) {
+                continue;
+            }
             if (!force && hasOwn(source.prototype, data.name)) {
                 continue;
             }

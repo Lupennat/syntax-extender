@@ -1,18 +1,30 @@
-require('./bootstrap');
+'use strict';
 
-const Cache = require('./services/cache');
-const Redis = require('./support/facades/redis');
-const manager = require('./manager');
+require('./bootstrap');
+const App = require('examples/app');
+const Cache = require('examples/services/cache');
+const RedisAdapted = require('examples/services/redis-adapted');
+const Facade = require('examples/support/facades/facade');
+const Redis = require('examples/support/facades/redis');
+
+const app = new App();
+
+Facade.setFacadeApplication(app);
+
+app.redis = new RedisAdapted();
 
 console.log('get' in Redis); // false
 console.log('set' in Redis); // false
 console.log('doesntExist' in Redis); // false
 
-console.log(Redis.get('key')); // null
-
+(async () => {
+    console.log(await Redis.get('key')); // null
+})();
 Redis.set('key', 1024);
 
-console.log(Redis.get('key')); // 1024
+(async () => {
+    console.log(await Redis.get('key')); // 1024
+})();
 
 try {
     Redis.doesntExist();
@@ -21,20 +33,26 @@ try {
 }
 
 try {
-    manager.add();
+    app.add();
 } catch (error) {
-    console.log(error.message); //  Manager.add missing parameters at position 1.
+    console.log(error.message); //  app.add missing parameters at position 1.
 }
 try {
-    manager.add('test', []);
+    app.add('test', []);
 } catch (error) {
-    console.log(error.message); //  Manager.add parameter at position 2 expected to be "Service", "Array" given.
+    console.log(error.message); //  app.add parameter at position 2 expected to be "Service", "Array" given.
 }
 
-manager.add('cache', new Cache());
+try {
+    app.test = [];
+} catch (error) {
+    console.log(error.message); //  app.add parameter at position 2 expected to be "Service", "Array" given.
+}
+
+app.cache = new Cache();
 
 try {
-    require('./services/db');
+    require('examples/services/db');
 } catch (error) {
     console.log(error.message); // Declaration of static Db.get(times:integer): any must be compatible with Service.get(times:integer): Promise<[integer]>
 }

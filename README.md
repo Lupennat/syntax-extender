@@ -1210,7 +1210,7 @@ handler.get = function (target, property, receiver) {
 
 ## private workaround
 
-workaround should be implemented if you really want to define private, otherwise you can use `__name` syntax, in the next future something will be implemented to transform this syntax in a real private.
+workaround should be implemented if you want to define real private, otherwise you can use `__name` syntax, in the next future something will be implemented to transform this syntax in a real private.
 
 create a native class with private and extends a class with magic methods
 

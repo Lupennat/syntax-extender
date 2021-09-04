@@ -3,7 +3,7 @@
         "moduleResolution": "node",
         "paths": {
             "syntax-extender/tests/interceptor/*": ["./spec/tests/interceptor/*"],
-            "syntax-extender/examples/*": ["./examples/*"]
+            "syntax-extender/examples/*": ["./examples/app/*"]
         }
     }
 }
