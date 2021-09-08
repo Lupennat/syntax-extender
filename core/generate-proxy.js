@@ -277,9 +277,9 @@ const generateInterfaceProxy = (source, keysToRemove) => {
     const name = source.name;
     const metadata = getMetadata(source);
 
-    const [staticKeysToRemove, prototypeKeysToRemove] = fixSourceAbstracts(source, metadata, {}, true, true);
+    let [staticKeysToRemove, prototypeKeysToRemove] = fixSourceAbstracts(source, metadata, {}, true, true);
 
-    keysToRemove.concat(staticKeysToRemove);
+    staticKeysToRemove = staticKeysToRemove.concat(keysToRemove);
 
     const originalHasInstance = source[Symbol.hasInstance];
     Object.defineProperty(source, Symbol.hasInstance, {
@@ -343,9 +343,9 @@ const generateClassProxy = (source, abstracts, keysToRemove, isAbstract = false)
 
     fixSourceConstants(source, metadata);
 
-    const [staticKeysToRemove, prototypeKeysToRemove] = fixSourceAbstracts(source, metadata, abstracts);
+    let [staticKeysToRemove, prototypeKeysToRemove] = fixSourceAbstracts(source, metadata, abstracts);
 
-    keysToRemove.concat(staticKeysToRemove);
+    staticKeysToRemove = staticKeysToRemove.concat(keysToRemove);
 
     if (metadata.hasFeature('VALIDATION')) {
         addValidationRules(source, metadata);
